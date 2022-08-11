@@ -1,4 +1,10 @@
-def Main() -> None:
+"""
+Principal function to be called by Docker
+"""
+
+
+def main() -> None:
+    """Orchestration function"""
     print("Testing GH")
 
 
