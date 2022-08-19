@@ -1,4 +1,5 @@
 # TODO: https://snyk.io/blog/best-practices-containerizing-python-docker/
+LABEL AUTHOR="Proyecto Nutria <contact@proyectonutria.com>"
 
 FROM python:3.10-slim
 
