@@ -2,7 +2,7 @@
 
 Please include a summary of the changes and the related issue. 
 
-## Type of change
+# Type of change
 
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
