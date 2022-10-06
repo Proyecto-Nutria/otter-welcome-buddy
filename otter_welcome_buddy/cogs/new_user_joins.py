@@ -15,9 +15,11 @@ class Greetings(commands.Cog):
         """Ready Event"""
         print("We have logged in ")
 
-    def __str__(self):
-        """Test"""
-        return ""
+    @commands.Cog.listener()
+    async def on_member_join(self, member):
+        """Send Welcome message to new member"""
+        print("User Joined")
+        await member.send("Welcome To Project Nutria")
 
 
 async def setup(bot):
