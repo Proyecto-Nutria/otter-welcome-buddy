@@ -21,6 +21,12 @@ class Greetings(commands.Cog):
         print("User Joined")
         await member.send("Welcome To Project Nutria")
 
+    @commands.command()
+    async def hello(self, ctx, *, member=None):
+        """Says hello"""
+        member = member or ctx.author
+        await ctx.send(f"Hello {member.name}... This feels familiar.")
+
 
 async def setup(bot):
     """Required setup method"""
