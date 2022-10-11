@@ -20,6 +20,7 @@ async def register_cogs(bot: Bot) -> None:
     ]
 
     for cog in allowed_cogs:
+        pass
         # __file__ stores absolute path
         if cog.__file__ is None:
             print("Module doesn't have file path")
