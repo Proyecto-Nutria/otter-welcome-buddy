@@ -1,4 +1,5 @@
 """Cogs allow to organize a collection of commands, listeners,into one class"""
+
 from discord.ext.commands import Bot
 
 from otter_welcome_buddy.cogs import new_user_joins
