@@ -17,13 +17,13 @@ def test_formatModulePath_cogExtensionFormat():
 
 
 @pytest.mark.asyncio
-async def test_async_func_clone():
+async def test_loadExtensions_registerCogs():
     # Arrange
-    mock_thing = AsyncMock()
-    mock_thing.load_extension = AsyncMock()
+    mock_bot = AsyncMock()
+    mock_bot.load_extension = AsyncMock()
 
     # Act
-    await cogs.register_cogs(mock_thing)
+    await cogs.register_cogs(mock_bot)
 
     # Assert
-    assert mock_thing.load_extension.call_count == 1
+    assert mock_bot.load_extension.call_count == 1
