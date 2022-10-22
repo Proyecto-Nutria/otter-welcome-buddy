@@ -1,3 +1,3 @@
-"""Project-level constants."""
+"""Project-level constants"""
 
 COMMAND_PREFIX = "!"
