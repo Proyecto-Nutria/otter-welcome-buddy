@@ -118,7 +118,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments 
 
-This README was possible thanks to [Beast-README](https://github.com/othneildrew/Best-README-Template)
+This README was possible thanks to [Best-README](https://github.com/othneildrew/Best-README-Template)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
