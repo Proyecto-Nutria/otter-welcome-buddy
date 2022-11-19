@@ -1,6 +1,3 @@
-""" General messages of the bot """
-
-
 class Formatter:
     """Dependency to inject messages"""
 
