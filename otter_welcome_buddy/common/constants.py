@@ -1,3 +1,3 @@
-"""Project-level constants"""
-
 COMMAND_PREFIX = "!"
+# DAY_ONE_OF_EACH_MONTH_CRON = "0 0 1 * *"
+DAY_ONE_OF_EACH_MONTH_CRON = "*/1 * * * *"
