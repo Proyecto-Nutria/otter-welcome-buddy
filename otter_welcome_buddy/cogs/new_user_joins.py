@@ -3,7 +3,6 @@ from discord.ext import commands
 from otter_welcome_buddy.formatters import debug, messages
 
 
-# We need to create easier test by migrating everything to protected methods
 class Greetings(commands.Cog):
     """When a user joins, sends reactionable message"""
 
