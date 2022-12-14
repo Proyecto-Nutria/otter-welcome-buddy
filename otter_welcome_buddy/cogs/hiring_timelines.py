@@ -34,7 +34,7 @@ class Timelines(commands.Cog):
         """Sends message to announcement channel at the start of month"""
         channel_id = int(os.environ["ANNOUNCEMENT_CHANNEL_ID"])
         channel = self.bot.get_channel(channel_id)
-        await channel.send(self.__get_hiring_events())
+        await channel.send(self._get_hiring_events())
 
 
 async def setup(bot):
