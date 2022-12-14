@@ -25,14 +25,16 @@ class Timelines(commands.Cog):
         )
         self.scheduler.start()
 
+    def _get_hiring_events(self):
+        return self.messages_formatter.get_hiring_events_for(
+            DateUtils.get_current_month()
+        )
+
     async def send_message_on_channel(self):
         """Sends message to announcement channel at the start of month"""
         channel_id = int(os.environ["ANNOUNCEMENT_CHANNEL_ID"])
         channel = self.bot.get_channel(channel_id)
-        message = self.messages_formatter.get_hiring_events_for(
-            DateUtils.get_current_month()
-        )
-        await channel.send(message)
+        await channel.send(self.__get_hiring_events())
 
 
 async def setup(bot):

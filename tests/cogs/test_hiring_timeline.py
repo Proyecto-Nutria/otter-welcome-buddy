@@ -1,51 +1,30 @@
-from unittest.mock import AsyncMock
+from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from otter_welcome_buddy.cogs import new_user_joins
+from otter_welcome_buddy.cogs import hiring_timelines
 
 
 @pytest.mark.asyncio
-async def test_cogSetup_registerCommand(mock_bot, mock_msg_fmt, mock_debug_fmt):
+async def test_register_cog(mock_bot):
     # Arrange
     mock_bot.add_cog = AsyncMock()
 
     # Act
-    await new_user_joins.setup(mock_bot)
+    await hiring_timelines.setup(mock_bot)
 
     # Assert
     assert mock_bot.add_cog.called
 
 
-@pytest.mark.asyncio
-async def test_onReady_printMessage(mock_bot, mock_msg_fmt, mock_debug_fmt):
+def test_call_formatter(mock_bot):
     # Arrange
-    cog = new_user_joins.Greetings(mock_bot, mock_msg_fmt, mock_debug_fmt)
+    mock_timeline_fmt = MagicMock()
+    mock_timeline_fmt.get_hiring_events_for = MagicMock()
+    sut = hiring_timelines.Timelines(mock_bot, mock_timeline_fmt)
 
     # Act
-    await cog.on_ready()
+    sut._get_hiring_events()
 
     # Assert
-    assert mock_debug_fmt.bot_is_ready.called
-
-
-@pytest.mark.asyncio
-async def test_onMemberJoins_sendMessage(mock_bot, mock_msg_fmt, mock_debug_fmt):
-    # Arrange
-    mock_member = AsyncMock()
-    cog = new_user_joins.Greetings(mock_bot, mock_msg_fmt, mock_debug_fmt)
-
-    # Act
-    await cog.on_member_join(mock_member)
-
-    # Assert
-    assert mock_msg_fmt.welcome_message.called
-
-
-def test_commandMessage_correctMessage(mock_bot, mock_msg_fmt, mock_debug_fmt):
-    # Act
-    cog = new_user_joins.Greetings(mock_bot, mock_msg_fmt, mock_debug_fmt)
-    cog._command_message()
-
-    # Assert
-    assert mock_msg_fmt.welcome_message.called
+    assert mock_timeline_fmt.get_hiring_events_for.called
