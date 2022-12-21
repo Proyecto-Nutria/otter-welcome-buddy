@@ -21,10 +21,10 @@ def test_call_formatter(mock_bot):
     # Arrange
     mock_timeline_fmt = MagicMock()
     mock_timeline_fmt.get_hiring_events_for = MagicMock()
-    sut = hiring_timelines.Timelines(mock_bot, mock_timeline_fmt)
+    system_under_test = hiring_timelines.Timelines(mock_bot, mock_timeline_fmt)
 
     # Act
-    sut._get_hiring_events()
+    system_under_test._get_hiring_events()
 
     # Assert
     assert mock_timeline_fmt.get_hiring_events_for.called

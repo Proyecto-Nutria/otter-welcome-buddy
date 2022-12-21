@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from otter_welcome_buddy.common.constants import DAY_ONE_OF_EACH_MONTH_CRON
+from otter_welcome_buddy.common.constants import CronExpressions
 from otter_welcome_buddy.common.utils.dates import DateUtils
 
 
@@ -18,19 +18,21 @@ def test_cron_creation_from_crontab():
     dec_fixed_date = datetime(2022, 12, 30)
 
     # Act
-    sut = DateUtils.create_cron_trigger_from(DAY_ONE_OF_EACH_MONTH_CRON)
-    jan_exec = sut.get_next_fire_time(None, dec_fixed_date)
-    feb_exec = sut.get_next_fire_time(None, jan_exec + timedelta(days=1))
-    mar_exec = sut.get_next_fire_time(None, feb_exec + timedelta(days=1))
-    apr_exec = sut.get_next_fire_time(None, mar_exec + timedelta(days=1))
-    may_exec = sut.get_next_fire_time(None, apr_exec + timedelta(days=1))
-    jun_exec = sut.get_next_fire_time(None, may_exec + timedelta(days=1))
-    jul_exec = sut.get_next_fire_time(None, jun_exec + timedelta(days=1))
-    aug_exec = sut.get_next_fire_time(None, jul_exec + timedelta(days=1))
-    sep_exec = sut.get_next_fire_time(None, aug_exec + timedelta(days=1))
-    oct_exec = sut.get_next_fire_time(None, sep_exec + timedelta(days=1))
-    nov_exec = sut.get_next_fire_time(None, oct_exec + timedelta(days=1))
-    dec_exec = sut.get_next_fire_time(None, nov_exec + timedelta(days=1))
+    system_under_test = DateUtils.create_cron_trigger_from(
+        CronExpressions.DAY_ONE_OF_EACH_MONTH_CRON.value
+    )
+    jan_exec = system_under_test.get_next_fire_time(None, dec_fixed_date)
+    feb_exec = system_under_test.get_next_fire_time(None, jan_exec + timedelta(days=1))
+    mar_exec = system_under_test.get_next_fire_time(None, feb_exec + timedelta(days=1))
+    apr_exec = system_under_test.get_next_fire_time(None, mar_exec + timedelta(days=1))
+    may_exec = system_under_test.get_next_fire_time(None, apr_exec + timedelta(days=1))
+    jun_exec = system_under_test.get_next_fire_time(None, may_exec + timedelta(days=1))
+    jul_exec = system_under_test.get_next_fire_time(None, jun_exec + timedelta(days=1))
+    aug_exec = system_under_test.get_next_fire_time(None, jul_exec + timedelta(days=1))
+    sep_exec = system_under_test.get_next_fire_time(None, aug_exec + timedelta(days=1))
+    oct_exec = system_under_test.get_next_fire_time(None, sep_exec + timedelta(days=1))
+    nov_exec = system_under_test.get_next_fire_time(None, oct_exec + timedelta(days=1))
+    dec_exec = system_under_test.get_next_fire_time(None, nov_exec + timedelta(days=1))
 
     # Assert
     assert datetime(2023, 1, 1).date() == jan_exec.date()

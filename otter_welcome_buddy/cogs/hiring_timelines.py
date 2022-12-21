@@ -3,7 +3,7 @@ import os
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from discord.ext import commands
 
-from otter_welcome_buddy.common.constants import DAY_ONE_OF_EACH_MONTH_CRON
+from otter_welcome_buddy.common.constants import CronExpressions
 from otter_welcome_buddy.common.utils.dates import DateUtils
 from otter_welcome_buddy.formatters import timeline
 
@@ -21,11 +21,14 @@ class Timelines(commands.Cog):
         """Configure and start scheduler"""
         self.scheduler.add_job(
             self.send_message_on_channel,
-            DateUtils.create_cron_trigger_from(DAY_ONE_OF_EACH_MONTH_CRON),
+            DateUtils.create_cron_trigger_from(
+                CronExpressions.DAY_ONE_OF_EACH_MONTH_CRON.value
+            ),
         )
         self.scheduler.start()
 
     def _get_hiring_events(self):
+        """Get hiring events for current month"""
         return self.messages_formatter.get_hiring_events_for(
             DateUtils.get_current_month()
         )

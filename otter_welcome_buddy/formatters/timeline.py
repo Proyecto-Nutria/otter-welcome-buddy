@@ -3,15 +3,16 @@ class Formatter:
 
     @staticmethod
     def get_hiring_events_for(month: int) -> str:
-        """Internship application for whole year"""
+        """
+        Internship application for whole year. Source:
+        https://www.techintern.io/blog/internship-hiring-timelines-and-how-to-navigate-them/
+        """
         applicatons_opened_for = "Internship application opened for:"
 
         no_season = "Not this month, try next one 🦦"
         summer_season = "Summer Internships 🏝️"
         fall_season = "Fall Internships 🍂"
         winter_season = "Wintern Internships ⛄"
-
-        print(month)
 
         match month:
             # Large Companies hire from August to January
