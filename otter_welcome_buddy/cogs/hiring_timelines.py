@@ -15,7 +15,16 @@ class Timelines(commands.Cog):
         self.bot = bot
         self.messages_formatter = messages_formatter
         self.scheduler: AsyncIOScheduler = AsyncIOScheduler()
+
+    @commands.command()
+    async def start(self, _):
+        """Command to interact with the bot and start cron"""
         self.__configure_scheduler()
+
+    @commands.command()
+    async def stop(self, _):
+        """Command to interact with the bot and start cron"""
+        self.scheduler.stop()
 
     def __configure_scheduler(self):
         """Configure and start scheduler"""
