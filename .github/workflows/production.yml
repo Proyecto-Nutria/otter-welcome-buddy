@@ -5,6 +5,10 @@ name: Push Bot To Prod
 #push:
 #branches: [develop]
 
+on:
+  pull_request:
+    branches: [main, develop]
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
