@@ -7,7 +7,6 @@ from otter_welcome_buddy.formatters import debug
 from otter_welcome_buddy.formatters import messages
 
 
-# We need to create easier test by migrating everything to protected methods
 class Greetings(commands.Cog):
     """When a user joins, sends reactionable message"""
 
