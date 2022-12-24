@@ -6,7 +6,7 @@ ENV POETRY_VERSION=1.1.14
 # -m makes sure that you're using the pip tied to the active Python executable
 RUN python3.10 -m pip install poetry==$POETRY_VERSION
 
-WORKDIR /otter_welcome_buddy
+WORKDIR /root
 
 # copy requirement files to ensure they will be cached
 COPY poetry.lock pyproject.toml ./
