@@ -10,7 +10,6 @@ from otter_welcome_buddy.startup import cogs, intents
 async def main() -> None:
     """Principal function to be called by Docker"""
 
-    print("Testing Logs")
     bot: Bot = Bot(
         command_prefix=COMMAND_PREFIX, intents=intents.get_registered_intents()
     )
