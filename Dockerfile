@@ -15,4 +15,4 @@ RUN poetry config virtualenvs.in-project true --local
 RUN poetry install --no-dev
 
 COPY . .
-CMD [ "poetry", "run", "python", "otter_welcome_buddy" ]
+CMD [ "poetry", "run", "python", "-m", "otter_welcome_buddy" ]
