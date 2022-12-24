@@ -3,8 +3,7 @@ import os
 
 from common.constants import COMMAND_PREFIX
 from discord.ext.commands import Bot
-
-from otter_welcome_buddy.startup import cogs, intents
+from startup import cogs, intents
 
 
 async def main() -> None:
