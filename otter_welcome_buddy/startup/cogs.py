@@ -22,8 +22,8 @@ async def register_cogs(bot: Bot) -> None:
 
     for cog in allowed_cogs:
         # __file__ stores absolute path
-        cog_extension = __format_module_path_into_cog_extension(cog.__file__)
-        logging.info(cog_extension)
         await bot.load_extension(f"otter_welcome_buddy.cogs.new_user_joins")
-        logging.info("Cog loaded")
+        print("Cog loaded")
+        cog_extension = __format_module_path_into_cog_extension(cog.__file__)
+        print(cog_extension)
         # await bot.load_extension(cog_extension)
