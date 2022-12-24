@@ -1,13 +1,9 @@
 name: Push Bot To Prod
 
 # TODO: We need to create dev and prod credentials
-#on:
-#push:
-#branches: [develop]
-
 on:
-  pull_request:
-    branches: [main, develop]
+  push:
+    branches: [develop]
 
 jobs:
   build-and-deploy:
