@@ -6,9 +6,18 @@ on:
 #push:
 #branches: [master, develop]
 
+# ref_name
 jobs:
+  setup-environment:
+    - if: github.event.pull_request.base.ref == 'master'
+      env:
+        - DEPLOY_ENV = "production"
+    - if: github.event.pull_request.base.ref == 'develop'
+      env:
+        - DEPLOY_ENV = "develop"
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment: $DEPLOY_ENV
     steps:
       - name: "Checkout GitHub Action"
         uses: actions/checkout@main
