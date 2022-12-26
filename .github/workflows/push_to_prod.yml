@@ -1,21 +1,13 @@
 name: Push Bot To Prod
 
 on:
-  pull_request:
-    branches: [develop]
-#push:
-#branches: [master, develop]
+  push:
+    branches: [master]
 
-# ref_name
 jobs:
-  setup-environment:
-    - if: github.event.pull_request.base.ref == 'master'
-      env: DEPLOY_ENV = "production"
-    - if: github.event.pull_request.base.ref == 'develop'
-      env: DEPLOY_ENV = "develop"
   build-and-deploy:
     runs-on: ubuntu-latest
-    environment: $DEPLOY_ENV
+    environment: production
     steps:
       - name: "Checkout GitHub Action"
         uses: actions/checkout@main
