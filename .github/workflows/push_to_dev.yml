@@ -1,8 +1,8 @@
 name: Push Bot To Dev
 
-#on:
-#push:
-#branches: [develop]
+on:
+  pull_request:
+    branches: [develop]
 
 jobs:
   build-and-deploy:
