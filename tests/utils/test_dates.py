@@ -19,7 +19,7 @@ def test_cron_creation_from_crontab():
 
     # Act
     system_under_test = DateUtils.create_cron_trigger_from(
-        CronExpressions.DAY_ONE_OF_EACH_MONTH_CRON.value
+        CronExpressions.DAY_ONE_OF_EACH_MONTH_CRON.value,
     )
     jan_exec = system_under_test.get_next_fire_time(None, dec_fixed_date)
     feb_exec = system_under_test.get_next_fire_time(None, jan_exec + timedelta(days=1))

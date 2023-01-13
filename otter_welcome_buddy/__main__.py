@@ -2,16 +2,20 @@ import asyncio
 import os
 
 from discord.ext.commands import Bot
+from dotenv import load_dotenv
 
 from otter_welcome_buddy.common.constants import COMMAND_PREFIX
 from otter_welcome_buddy.startup import cogs, intents
+
+load_dotenv()
 
 
 async def main() -> None:
     """Principal function to be called by Docker"""
 
     bot: Bot = Bot(
-        command_prefix=COMMAND_PREFIX, intents=intents.get_registered_intents()
+        command_prefix=COMMAND_PREFIX,
+        intents=intents.get_registered_intents(),
     )
 
     async with bot:
