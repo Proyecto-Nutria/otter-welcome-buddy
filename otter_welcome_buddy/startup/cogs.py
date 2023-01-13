@@ -1,4 +1,4 @@
-from types import ModuleType
+from types import ModuleType  # pylint: disable=no-name-in-module
 from typing import List
 
 from discord.ext.commands import Bot

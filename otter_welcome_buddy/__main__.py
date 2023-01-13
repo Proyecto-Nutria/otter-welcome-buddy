@@ -2,7 +2,7 @@ import asyncio
 import os
 
 from discord.ext.commands import Bot
-from dotenv import load_dotenv
+from dotenv import load_dotenv  # type: ignore
 
 from otter_welcome_buddy.common.constants import COMMAND_PREFIX
 from otter_welcome_buddy.startup import cogs, intents
