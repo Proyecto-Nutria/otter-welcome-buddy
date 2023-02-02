@@ -6,7 +6,6 @@ from discord.ext import commands
 from otter_welcome_buddy.common.constants import CronExpressions
 from otter_welcome_buddy.common.utils.dates import DateUtils
 from otter_welcome_buddy.formatters import timeline
-from otter_welcome_buddy.log import wrapper
 
 
 class Timelines(commands.Cog):
@@ -16,18 +15,19 @@ class Timelines(commands.Cog):
         self.bot = bot
         self.messages_formatter = messages_formatter
         self.scheduler: AsyncIOScheduler = AsyncIOScheduler()
-
-    @commands.command()
-    async def start(self, _):
-        """Command to interact with the bot and start cron"""
         self.__configure_scheduler()
 
-    @commands.command()
-    async def stop(self, _):
-        """Command to interact with the bot and start cron"""
-        self.scheduler.stop()
+    # Commented the !start !stop since I always forget to turn on the trigger
+    # @commands.command()
+    # async def start(self, _):
+    # """Command to interact with the bot and start cron"""
+    # self.__configure_scheduler()
 
-    @wrapper.log_function()
+    # @commands.command()
+    # async def stop(self, _):
+    # """Command to interact with the bot and start cron"""
+    # self.scheduler.stop()
+
     def __configure_scheduler(self):
         """Configure and start scheduler"""
         self.scheduler.add_job(
@@ -44,7 +44,6 @@ class Timelines(commands.Cog):
             DateUtils.get_current_month()
         )
 
-    @wrapper.log_function()
     async def send_message_on_channel(self):
         """Sends message to announcement channel at the start of month"""
         channel_id = int(os.environ["ANNOUNCEMENT_CHANNEL_ID"])
