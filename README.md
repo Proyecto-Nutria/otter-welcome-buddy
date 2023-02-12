@@ -72,6 +72,14 @@ You need to install all the prerequisites before following with the instalation 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<!-- CONFIGURATION INSTRUCTIONS -->
+## Configuration
+
+You need the following environmental variables either in a `.env` file under the root directory of this repository or directly added at your system (or your Docker instance):
+
+* `DISCORD_TOKEN`: the Discord Bot Token retrieved from the [developer page](https://discord.com/developers/applications).
+
+
 <!-- USAGE EXAMPLES -->
 ## Usage
 
