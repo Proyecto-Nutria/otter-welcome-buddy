@@ -1,10 +1,10 @@
-from typing import Type
-
 import discord
 from discord.ext import commands
-from discord.ext.commands import Bot, Context
+from discord.ext.commands import Bot
+from discord.ext.commands import Context
 
-from otter_welcome_buddy.formatters import debug, messages
+from otter_welcome_buddy.formatters import debug
+from otter_welcome_buddy.formatters import messages
 
 
 class Greetings(commands.Cog):
@@ -13,12 +13,12 @@ class Greetings(commands.Cog):
     def __init__(
         self,
         bot: Bot,
-        messages_dependency: Type[messages.Formatter],
-        debug_dependency: Type[debug.Formatter],
+        messages_dependency: type[messages.Formatter],
+        debug_dependency: type[debug.Formatter],
     ) -> None:
         self.bot: Bot = bot
-        self.messages_formatter: Type[messages.Formatter] = messages_dependency
-        self.debug_formatter: Type[debug.Formatter] = debug_dependency
+        self.messages_formatter: type[messages.Formatter] = messages_dependency
+        self.debug_formatter: type[debug.Formatter] = debug_dependency
 
     def _command_message(self) -> str:
         return self.messages_formatter.welcome_message()

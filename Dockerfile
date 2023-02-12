@@ -10,7 +10,7 @@ WORKDIR /root
 
 # copy requirement files to ensure they will be cached
 COPY poetry.lock pyproject.toml ./
-# $HOME may changed by runtimes, virtual env solves reproducibility issues 
+# $HOME may changed by runtimes, virtual env solves reproducibility issues
 RUN poetry config virtualenvs.in-project true --local \
  && poetry install --no-dev
 

@@ -1,14 +1,14 @@
 import os
-from typing import Optional, Type
 
-from apscheduler.schedulers.asyncio import AsyncIOScheduler  # type: ignore
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from discord import TextChannel
 from discord.ext import commands
-from discord.ext.commands import Bot, Context
+from discord.ext.commands import Bot
+from discord.ext.commands import Context
 
 from otter_welcome_buddy.common.constants import CronExpressions
 from otter_welcome_buddy.common.utils.dates import DateUtils
-from otter_welcome_buddy.common.utils.types.common import DiscordChannelTypeT
+from otter_welcome_buddy.common.utils.types.common import DiscordChannelType
 from otter_welcome_buddy.formatters import timeline
 from otter_welcome_buddy.log import wrapper
 
@@ -16,9 +16,9 @@ from otter_welcome_buddy.log import wrapper
 class Timelines(commands.Cog):
     """Hiring events for every month"""
 
-    def __init__(self, bot: Bot, messages_formatter: Type[timeline.Formatter]):
+    def __init__(self, bot: Bot, messages_formatter: type[timeline.Formatter]):
         self.bot: Bot = bot
-        self.messages_formatter: Type[timeline.Formatter] = messages_formatter
+        self.messages_formatter: type[timeline.Formatter] = messages_formatter
         self.scheduler: AsyncIOScheduler = AsyncIOScheduler()
 
     @commands.group(
@@ -63,7 +63,7 @@ class Timelines(commands.Cog):
     async def send_message_on_channel(self) -> None:
         """Sends message to announcement channel at the start of month"""
         channel_id: int = int(os.environ["ANNOUNCEMENT_CHANNEL_ID"])
-        channel: Optional[DiscordChannelTypeT] = self.bot.get_channel(channel_id)
+        channel: DiscordChannelType | None = self.bot.get_channel(channel_id)
         if isinstance(channel, TextChannel):
             await channel.send(self._get_hiring_events())
         else:

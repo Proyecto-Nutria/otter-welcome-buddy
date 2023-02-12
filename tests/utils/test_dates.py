@@ -1,4 +1,5 @@
-from datetime import datetime, timedelta
+from datetime import datetime
+from datetime import timedelta
 
 from otter_welcome_buddy.common.constants import CronExpressions
 from otter_welcome_buddy.common.utils.dates import DateUtils

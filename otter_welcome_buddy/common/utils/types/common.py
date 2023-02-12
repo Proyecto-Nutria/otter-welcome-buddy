@@ -2,6 +2,6 @@ from typing import TypeAlias
 
 import discord
 
-DiscordChannelTypeT: TypeAlias = (
+DiscordChannelType: TypeAlias = (
     discord.abc.GuildChannel | discord.Thread | discord.abc.PrivateChannel
 )
