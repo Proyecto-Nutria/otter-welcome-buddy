@@ -6,7 +6,7 @@ from otter_welcome_buddy.cogs import new_user_joins
 
 
 @pytest.mark.asyncio
-async def test_cogSetup_registerCommand(mock_bot, mock_msg_fmt, mock_debug_fmt):
+async def test_cogSetup_registerCommand(mock_bot):
     # Arrange
     mock_bot.add_cog = AsyncMock()
 
