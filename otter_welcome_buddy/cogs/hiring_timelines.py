@@ -14,7 +14,12 @@ from otter_welcome_buddy.log import wrapper
 
 
 class Timelines(commands.Cog):
-    """Hiring events for every month"""
+    """
+    Timelines command events, where notifications about hiring events are sent every month
+    Commands:
+        timelines start:     Start cronjob for timeline messages
+        timelines stop:      Stop cronjob for timeline messages
+    """
 
     def __init__(self, bot: Bot, messages_formatter: type[timeline.Formatter]):
         self.bot: Bot = bot
