@@ -25,6 +25,7 @@ class Timelines(commands.Cog):
         self.bot: Bot = bot
         self.messages_formatter: type[timeline.Formatter] = messages_formatter
         self.scheduler: AsyncIOScheduler = AsyncIOScheduler()
+
         self.__configure_scheduler()
 
     @commands.group(
