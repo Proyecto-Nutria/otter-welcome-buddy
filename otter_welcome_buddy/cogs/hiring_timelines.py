@@ -10,7 +10,6 @@ from otter_welcome_buddy.common.constants import CronExpressions
 from otter_welcome_buddy.common.utils.dates import DateUtils
 from otter_welcome_buddy.common.utils.types.common import DiscordChannelType
 from otter_welcome_buddy.formatters import timeline
-from otter_welcome_buddy.log import wrapper
 
 
 class Timelines(commands.Cog):
