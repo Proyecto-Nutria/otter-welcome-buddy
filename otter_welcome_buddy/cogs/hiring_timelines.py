@@ -10,11 +10,15 @@ from otter_welcome_buddy.common.constants import CronExpressions
 from otter_welcome_buddy.common.utils.dates import DateUtils
 from otter_welcome_buddy.common.utils.types.common import DiscordChannelType
 from otter_welcome_buddy.formatters import timeline
-from otter_welcome_buddy.log import wrapper
 
 
 class Timelines(commands.Cog):
-    """Hiring events for every month"""
+    """
+    Timelines command events, where notifications about hiring events are sent every month
+    Commands:
+        timelines start:     Start cronjob for timeline messages
+        timelines stop:      Stop cronjob for timeline messages
+    """
 
     def __init__(self, bot: Bot, messages_formatter: type[timeline.Formatter]):
         self.bot: Bot = bot
@@ -44,7 +48,7 @@ class Timelines(commands.Cog):
         """Command to interact with the bot and stop cron"""
         self.scheduler.stop()
 
-    @wrapper.log_function()
+
     def __configure_scheduler(self) -> None:
         """Configure and start scheduler"""
         self.scheduler.add_job(
@@ -61,7 +65,6 @@ class Timelines(commands.Cog):
             DateUtils.get_current_month(),
         )
 
-    @wrapper.log_function()
     async def send_message_on_channel(self) -> None:
         """Sends message to announcement channel at the start of month"""
         channel_id: int = int(os.environ["ANNOUNCEMENT_CHANNEL_ID"])
