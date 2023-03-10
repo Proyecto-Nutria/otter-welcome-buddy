@@ -4,9 +4,9 @@ from discord.ext.commands import Bot
 from discord.ext.commands import Context
 
 from otter_welcome_buddy.common.constants import OTTER_ROLE
-from otter_welcome_buddy.common.constants import WELCOME_MESSAGES
 from otter_welcome_buddy.formatters import debug
 from otter_welcome_buddy.formatters import messages
+from otter_welcome_buddy.settings import WELCOME_MESSAGES
 
 
 class Greetings(commands.Cog):
