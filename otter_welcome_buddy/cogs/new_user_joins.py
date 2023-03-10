@@ -39,11 +39,11 @@ class Greetings(commands.Cog):
         if not WELCOME_MESSAGES or str(payload.message_id) in WELCOME_MESSAGES:
             try:
                 guild = next(guild for guild in self.bot.guilds if guild.id == payload.guild_id)
-                role = discord.utils.get(guild.roles, name=OTTER_ROLE)
-                if role is None:
+                member_role = discord.utils.get(guild.roles, name=OTTER_ROLE)
+                if member_role is None:
                     print(f"Not role found in {__name__} for guild {guild.name}")
                     return
-                await discord.Member.add_roles(payload.member, role)
+                await discord.Member.add_roles(payload.member, member_role)
             except StopIteration:
                 print(f"Not guild found in {__name__}")
             except discord.Forbidden:

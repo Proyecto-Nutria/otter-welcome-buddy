@@ -16,6 +16,9 @@ COMMAND_PREFIX: str = "!"
 
 WELCOME_MESSAGES = os.environ.get("WELCOME_MESSAGES", "").split(",")
 
-OTTER_ADMIN = os.environ.get("OTTER_ADMIN", "Admin")
-OTTER_MODERATOR = os.environ.get("OTTER_MODERATOR", "Moderator")
-OTTER_ROLE = os.environ.get("OTTER_ROLE", "Member")
+# Discord role that give access to admin role based commands
+OTTER_ADMIN = "ROOT"
+# Discord role that give access to moderator role based commands
+OTTER_MODERATOR = "Collaborator"
+# Discord role that give access to the remaining channels and is given when reacted to WELCOME_MESSAGES
+OTTER_ROLE = "Interviewee"

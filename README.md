@@ -79,9 +79,6 @@ You need the following environmental variables either in a `.env` file under the
 
 * `DISCORD_TOKEN`: the Discord Bot Token retrieved from the [developer page](https://discord.com/developers/applications).
 * `WELCOME_MESSAGES`: [`message ids`](https://discordpy.readthedocs.io/en/stable/api.html?highlight=message%20id#discord.Message.id) separated by `,` that give `OTTER_ROLE` when reacted to.
-* `OTTER_ADMIN`: Discord role that give access to admin role based commands.
-* `OTTER_MODERATOR`: Discord role that give access to moderator role based commands.
-* `OTTER_ROLE`: Discord role that give access to the remaining channels and is given when reacted to `WELCOME_MESSAGES`.
 
 
 <!-- USAGE EXAMPLES -->
