@@ -33,6 +33,7 @@ class Greetings(commands.Cog):
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent) -> None:
         """Event fired when a user react to the welcome message, giving the entry role to him"""
+        # Check if the user to add the role is valid
         if payload.member is None:
             print(f"Missing member to add role in {__name__}")
             return
