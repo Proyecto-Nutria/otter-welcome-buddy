@@ -11,6 +11,7 @@ from discord import RawReactionActionEvent
 from discord import Role
 from discord.ext.commands import Bot
 from pytest_mock import MockFixture
+from sqlalchemy.orm import Session
 
 from otter_welcome_buddy.cogs import events
 from otter_welcome_buddy.database.handlers.db_guild_handler import DbGuildHandler
