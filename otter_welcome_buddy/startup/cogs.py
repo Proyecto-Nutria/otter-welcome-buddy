@@ -7,6 +7,7 @@ from otter_welcome_buddy.cogs import events
 from otter_welcome_buddy.cogs import hiring_timelines
 from otter_welcome_buddy.cogs import interview_match
 from otter_welcome_buddy.cogs import leetcode
+from otter_welcome_buddy.cogs import leetcode_challenge
 from otter_welcome_buddy.cogs import new_user_joins
 from otter_welcome_buddy.cogs import roles
 
@@ -30,6 +31,7 @@ async def register_cogs(bot: Bot) -> None:
         interview_match,
         roles,
         leetcode,
+        leetcode_challenge,
     ]
 
     for cog in allowed_cogs:
