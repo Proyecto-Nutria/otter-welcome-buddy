@@ -47,7 +47,6 @@ class Timelines(commands.Cog):
         """Command to interact with the bot and stop cron"""
         self.scheduler.stop()
 
-
     def __configure_scheduler(self) -> None:
         """Configure and start scheduler"""
         self.scheduler.add_job(

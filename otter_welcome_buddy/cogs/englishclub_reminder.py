@@ -57,7 +57,7 @@ class English(commands.Cog):
     @englishclub.command(brief="Stop the cronjob for the messages")  # type: ignore
     async def stop(self, _: Context) -> None:
         """Command to interact with the bot and stop cron"""
-        self.scheduler.stop()
+        self.scheduler.remove_job("job_id")
 
     @commands.command(brief="Schedule an English session")
     @commands.check(is_allowed)
@@ -110,6 +110,7 @@ class English(commands.Cog):
             DateUtils.create_cron_trigger_from(
                 CronExpressions.ENGLISH_CLUB_TIME.value,
             ),
+            id="job_id",
         )
         self.scheduler.start()
 
