@@ -15,6 +15,15 @@ from otter_welcome_buddy.common.utils.types.common import DiscordChannelType
 from otter_welcome_buddy.formatters import englishclub_message
 
 
+def is_allowed(ctx: Context) -> bool:
+    """
+    Return if a user is allowed to run a command or not
+    """
+    return ctx.author.id == int(os.environ["USER_ONE_ID"]) or ctx.author.id == int(
+        os.environ["USER_TWO_ID"],
+    )
+
+
 class English(commands.Cog):
     """
     English command events, where notifications about English sessions
@@ -40,17 +49,18 @@ class English(commands.Cog):
         """
         await ctx.send_help(ctx.command)
 
-    @englishclub.command(brief="Start the cronjob for the timeline messages")  # type: ignore
+    @englishclub.command(brief="Start the cronjob for the messages")  # type: ignore
     async def start(self, _: Context) -> None:
         """Command to interact with the bot and start cron"""
         self.__configure_scheduler()
 
-    @englishclub.command(brief="Stop the cronjob for the timeline messages")  # type: ignore
+    @englishclub.command(brief="Stop the cronjob for the messages")  # type: ignore
     async def stop(self, _: Context) -> None:
         """Command to interact with the bot and stop cron"""
         self.scheduler.stop()
 
     @commands.command(brief="Schedule an English session")
+    @commands.check(is_allowed)
     async def schedule_session(self, ctx: Context, hour: str) -> None:
         """Schedule the English Club session"""
 
@@ -59,15 +69,15 @@ class English(commands.Cog):
         if re.match(pattern, hour):
             channel_id: int = int(os.environ["ENGLISH_CHANNEL_ID"])
             channel: DiscordChannelType | None = self.bot.get_channel(channel_id)
-            description = f"A study session has been scheduled for {hour} on Sunday"
+            mention = "@everyone"
 
             embed = discord.Embed(
-                colour=discord.Colour.green(),
-                title="Schedule the English Club session",
-                description=description,
+                colour=discord.Colour.blue(),
+                title="English Club session",
+                description=mention + self.messages_formatter.english_club_message(hour),
             )
 
-            embed.set_image(url="bit.ly/3rZuR6Y")
+            embed.set_image(url="https://shorturl.at/blqMV")
 
             if isinstance(channel, TextChannel):
                 await channel.send(embed=embed)
@@ -76,17 +86,18 @@ class English(commands.Cog):
                 "Invalid, Use the following format: HH:MMam or HH:MMpm, e.g., '10:00PM'.",
             )
 
-    def _command_message(self) -> Embed:
+    def message_non_english_club(self) -> Embed:
         """
         Generate an Embed message for the English Club reminder.
         """
-        axssel_user_id = int(os.environ["USER_ID"])
-        axssel_mention = f"<@{axssel_user_id}>"
+
+        user_1 = f"<@{os.environ['USER_ONE_ID']}>"
+        user_2 = f"<@{os.environ['USER_TWO_ID']}>"
 
         embed = discord.Embed(
             colour=discord.Colour.blue(),
             title="English Club Reminder",
-            description=f"Hey yo, English club this week? {axssel_mention} 👀",
+            description=f"{self.messages_formatter.non_english_club_message()} {user_1} {user_2} 👀",
         )
 
         return embed
@@ -110,7 +121,7 @@ class English(commands.Cog):
         channel_id: int = int(os.environ["ROOT_CHANNEL_ID"])
         channel: DiscordChannelType | None = self.bot.get_channel(channel_id)
         if isinstance(channel, TextChannel):
-            await channel.send(embed=self._command_message())
+            await channel.send(embed=self.message_non_english_club())
         else:
             raise TypeError("Not valid channel to send the message in")
 
