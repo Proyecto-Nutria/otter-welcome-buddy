@@ -14,4 +14,4 @@ class DateUtils:
     @staticmethod
     def create_cron_trigger_from(crontab: str) -> CronTrigger:
         """Returns cron trigger from crontab"""
-        return CronTrigger.from_crontab(crontab)
+        return CronTrigger.from_crontab(crontab, "America/Mexico_City")
