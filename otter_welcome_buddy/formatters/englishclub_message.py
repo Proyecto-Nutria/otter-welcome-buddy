@@ -16,7 +16,7 @@ class Formatter:
 
         to improve your language skills and connect with fellow language enthusiasts!
 
-        See you there! 🙌🇺🇸
+        See you there on the English Club channel! 🎭
         """
 
         return message
