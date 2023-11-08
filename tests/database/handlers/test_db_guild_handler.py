@@ -11,7 +11,7 @@ def test_get_guild_succeed(temporary_mongo_connection: MongoClient) -> None:
     # Arrange
     mocked_guild_id: int = 123
     mocked_guild_model: GuildModel = GuildModel(
-        id=mocked_guild_id,
+        guild_id=mocked_guild_id,
     )
     mocked_guild_model.save()
 
@@ -35,7 +35,7 @@ def test_insert_guild_succeed(temporary_mongo_connection: MongoClient) -> None:
     # Arrange
     mocked_guild_id: int = 123
     mocked_guild_model: GuildModel = GuildModel(
-        id=mocked_guild_id,
+        guild_id=mocked_guild_id,
     )
 
     # Act
@@ -59,7 +59,7 @@ def test_delete_guild_valid_id(temporary_mongo_connection: MongoClient) -> None:
     # Arrange
     mocked_guild_id: int = 123
     mocked_guild_model: GuildModel = GuildModel(
-        id=mocked_guild_id,
+        guild_id=mocked_guild_id,
     )
     mocked_guild_model.save()
 
@@ -68,7 +68,7 @@ def test_delete_guild_valid_id(temporary_mongo_connection: MongoClient) -> None:
 
     # Assert
     with pytest.raises(DoesNotExist):
-        GuildModel.objects(id=mocked_guild_id).get()
+        GuildModel.objects(guild_id=mocked_guild_id).get()
 
 
 def test_delete_guild_invalid_id(temporary_mongo_connection: MongoClient) -> None:
@@ -77,4 +77,4 @@ def test_delete_guild_invalid_id(temporary_mongo_connection: MongoClient) -> Non
 
     # Assert
     with pytest.raises(DoesNotExist):
-        GuildModel.objects(id=123).get()
+        GuildModel.objects(guild_id=123).get()

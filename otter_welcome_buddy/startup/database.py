@@ -17,7 +17,7 @@ def init_guild_table(bot: Bot) -> None:
     """Verify that all the guilds that the bot is part of are in the database"""
     for guild in bot.guilds:
         if DbGuildHandler.get_guild(guild_id=guild.id) is None:
-            guild_model: GuildModel = GuildModel(id=guild.id)
+            guild_model: GuildModel = GuildModel(guild_id=guild.id)
             DbGuildHandler.insert_guild(guild_model=guild_model)
 
 
