@@ -19,7 +19,7 @@ def test_initGuildTable(
     mock_guild: Guild,
     mock_guild_model: GuildModel,
     is_new_guild: bool,
-):
+) -> None:
     # Arrange
     mocked_guild_id = 123
     mocked_guild_name = "Test Guild"
@@ -47,7 +47,7 @@ def test_initGuildTable(
 
 @pytest.mark.asyncio
 @patch("otter_welcome_buddy.startup.database.BaseModel.metadata.create_all")
-async def test_initDatabase(mock_create_all: MagicMock, mocker: MockFixture):
+async def test_initDatabase(mock_create_all: MagicMock, mocker: MockFixture) -> None:
     # Arrange
     mock_engine = MagicMock()
 

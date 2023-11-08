@@ -22,11 +22,13 @@ def test_get_cache_engine(
     # Arrange
     mock_engine = MagicMock()
 
-    mock_connection_string = mocker.patch.object(database,
+    mock_connection_string = mocker.patch.object(
+        database,
         "get_cache_connection_string",
         return_value="test.db",
     )
-    mock_create_engine = mocker.patch.object(database,
+    mock_create_engine = mocker.patch.object(
+        database,
         "create_engine",
         return_value=mock_engine,
     )
@@ -46,11 +48,13 @@ def test_create_cache_session(
     mock_engine = MagicMock()
     mock_session_maker = MagicMock()
 
-    mock_get_cache_engine = mocker.patch.object(database,
+    mock_get_cache_engine = mocker.patch.object(
+        database,
         "get_cache_engine",
         return_value=mock_engine,
     )
-    mock_sessionmaker = mocker.patch.object(database,
+    mock_sessionmaker = mocker.patch.object(
+        database,
         "sessionmaker",
         return_value=mock_session_maker,
     )
