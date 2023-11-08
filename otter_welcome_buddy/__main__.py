@@ -2,7 +2,9 @@ import asyncio
 import logging
 import os
 from logging.handlers import TimedRotatingFileHandler
+from multiprocessing import Queue
 
+import logging_loki
 from discord.ext.commands import Bot
 from discord.ext.commands import when_mentioned_or
 from dotenv import load_dotenv
@@ -25,20 +27,32 @@ def _setup() -> None:
         os.makedirs(path, exist_ok=True)
 
     # Logging to console and file on daily interval
+    logging_handlers: list[logging.Handler] = [
+        logging.StreamHandler(),
+        TimedRotatingFileHandler(
+            LOG_FILE_PATH,
+            when="D",
+            backupCount=3,
+            utc=True,
+        ),
+    ]
+
+    grafana_loki_uri: str | None = os.environ.get("GRAFANA_LOKI_URI")
+    if grafana_loki_uri:
+        loki_handler = logging_loki.LokiQueueHandler(
+            Queue(-1),
+            url=grafana_loki_uri,
+            tags={"application": "otter-welcome-buddy"},
+            version="1",
+        )
+        logging_handlers.append(loki_handler)
+
     logging.basicConfig(
         format="{asctime}:{levelname}:{name}:{message}",
         style="{",
         datefmt="%d-%m-%Y %H:%M:%S",
         level=logging.INFO,
-        handlers=[
-            logging.StreamHandler(),
-            TimedRotatingFileHandler(
-                LOG_FILE_PATH,
-                when="D",
-                backupCount=3,
-                utc=True,
-            ),
-        ],
+        handlers=logging_handlers,
     )
 
 
