@@ -10,7 +10,7 @@ class DbGuildHandler:
     def get_guild(guild_id: int) -> GuildModel | None:
         """Static method to get a guild by its id"""
         try:
-            guild_model: GuildModel = GuildModel.objects(id=guild_id).get()
+            guild_model: GuildModel = GuildModel.objects(guild_id=guild_id).get()
             return guild_model
         except DoesNotExist:
             return None
@@ -24,6 +24,6 @@ class DbGuildHandler:
     @staticmethod
     def delete_guild(guild_id: int) -> None:
         """Static method to delete an interview match record by a guild_id"""
-        guild_model: GuildModel | None = GuildModel.objects(id=guild_id).first()
+        guild_model: GuildModel | None = GuildModel.objects(guild_id=guild_id).first()
         if guild_model:
             guild_model.delete()

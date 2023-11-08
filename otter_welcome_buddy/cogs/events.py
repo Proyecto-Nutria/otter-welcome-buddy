@@ -37,7 +37,7 @@ class BotEvents(commands.Cog):
     async def on_guild_join(self, guild: discord.Guild) -> None:
         """Event fired when a guild is either created or the bot join into"""
         if DbGuildHandler.get_guild(guild_id=guild.id) is None:
-            guild_model: GuildModel = GuildModel(id=guild.id)
+            guild_model: GuildModel = GuildModel(guild_id=guild.id)
             DbGuildHandler.insert_guild(guild_model=guild_model)
 
     @commands.Cog.listener()

@@ -81,7 +81,7 @@ def temporary_mongo_connection():
 @pytest.fixture()
 def mock_guild_model(temporary_mongo_connection) -> GuildModel:
     mock_guild_model = GuildModel(
-        id=123,
+        guild_id=123,
     )
     mock_guild_model.save()
     return mock_guild_model
