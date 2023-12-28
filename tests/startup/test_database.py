@@ -60,6 +60,7 @@ async def test_initDatabase(mock_create_all: MagicMock, mocker: MockFixture) -> 
     mock_monitoring_register = mocker.patch.object(monitoring, "register")
     mock_mongo_engine = mocker.patch.object(database, "mongo_connect")
     mocker.patch.dict(os.environ, {"MONGO_URI": "mongodb://localhost:27020"})
+    mock_update_lc_problems = mocker.patch("otter_welcome_buddy.startup.database._update_leetcode_problems")
 
     # Act
     await database.init_database()
@@ -69,3 +70,4 @@ async def test_initDatabase(mock_create_all: MagicMock, mocker: MockFixture) -> 
     mock_create_all.assert_called_once_with(mock_engine)
     mock_monitoring_register.assert_called_once()
     mock_mongo_engine.assert_called_once()
+    mock_update_lc_problems.assert_called_once()
