@@ -1,4 +1,4 @@
-impot os
+import os
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from discord import TextChannel
@@ -47,7 +47,6 @@ class Timelines(commands.Cog):
         """Command to interact with the bot and stop cron"""
         self.scheduler.stop()
 
-
     def __configure_scheduler(self) -> None:
         """Configure and start scheduler"""
         self.scheduler.add_job(
@@ -77,4 +76,3 @@ class Timelines(commands.Cog):
 async def setup(bot: Bot) -> None:
     """Required setup method"""
     await bot.add_cog(Timelines(bot, timeline.Formatter))
-r
