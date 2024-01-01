@@ -13,5 +13,5 @@ class AnnouncementsConfigModel(Document):
         channel_id (int):       Channel identifier where to send the announcement
     """
 
-    guild = ReferenceField("GuildModel", reverse_delete_rule=CASCADE, required=True)
+    guild = ReferenceField("GuildModel", reverse_delete_rule=CASCADE, primary_key=True)
     channel_id = IntField(required=True)
