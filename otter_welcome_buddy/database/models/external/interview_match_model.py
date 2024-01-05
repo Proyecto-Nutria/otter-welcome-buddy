@@ -18,7 +18,7 @@ class InterviewMatchModel(Document):
         message_id (int):       Identifier of the message that will be processed for the activity
     """
 
-    guild = ReferenceField("GuildModel", reverse_delete_rule=CASCADE, required=True)
+    guild = ReferenceField("GuildModel", reverse_delete_rule=CASCADE, primary_key=True)
     author_id = IntField(required=True)
     channel_id = IntField(required=True)
     day_of_the_week = IntField(required=True)
