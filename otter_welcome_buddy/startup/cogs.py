@@ -3,6 +3,7 @@ from types import ModuleType  # pylint: disable=no-name-in-module
 
 from discord.ext.commands import Bot
 
+from otter_welcome_buddy.cogs import english_club_reminder
 from otter_welcome_buddy.cogs import events
 from otter_welcome_buddy.cogs import hiring_timelines
 from otter_welcome_buddy.cogs import interview_match
@@ -28,6 +29,7 @@ async def register_cogs(bot: Bot) -> None:
         hiring_timelines,
         interview_match,
         roles,
+        english_club_reminder,
     ]
 
     for cog in allowed_cogs:
