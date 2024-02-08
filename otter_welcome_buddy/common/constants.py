@@ -6,6 +6,7 @@ class CronExpressions(Enum):
     """Defined Cron Expressions"""
 
     DAY_ONE_OF_EACH_MONTH_CRON: str = "0 0 1 * *"
+    WEDNESDAY_NOON_CRON: str = "0 12 * * 2"
 
 
 COMMAND_PREFIX: str = "!"
@@ -33,5 +34,7 @@ OTTER_MODERATOR: str = "Collaborator"
 # Discord role that give access to the remaining channels and is
 # given when the user react to WELCOME_MESSAGES
 OTTER_ROLE: str = "Interviewee"
+
+OTTER_HEADER_IMAGE: str = "https://avatars.githubusercontent.com/u/58794037?s=200&v=4"
 
 WELCOME_MESSAGES: dict[int, list[int]] = {}
