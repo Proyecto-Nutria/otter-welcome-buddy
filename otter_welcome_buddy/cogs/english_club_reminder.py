@@ -87,7 +87,7 @@ class English(commands.Cog):
             embed = discord.Embed(
                 colour=discord.Colour.green(),
                 title="English Club Session",
-                description=everyone + self.messages_formatter.english_club_message(hour_str),
+                description=f"{everyone} {self.messages_formatter.english_club_message(hour_str)}",
             )
 
             embed.set_thumbnail(url=OTTER_HEADER_IMAGE)
