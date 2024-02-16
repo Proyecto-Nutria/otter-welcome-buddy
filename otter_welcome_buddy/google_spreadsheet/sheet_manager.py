@@ -138,54 +138,54 @@ class SheetManager:
         """
         Insert company name into the Allowed Companies sheet
         """
-        response = insert_company(company, self.creds, self.sheet_id)
+        response: bool = insert_company(company, self.creds, self.sheet_id)
         return response
 
     def insert_apply_data(self, user: str, company: str) -> str:
         """
         Insert application data into the Google SpreadSheet (Apply column).
         """
-        response = self.insert_data(user, company, 2)
+        response: str = self.insert_data(user, company, 2)
         return response
 
     def insert_oa_data(self, user: str, company: str) -> str:
         """
         Insert online assessment data into the Google SpreadSheet (Online Assessment column).
         """
-        response = self.insert_data(user, company, 3, "D")
+        response: str = self.insert_data(user, company, 3, "D")
         return response
 
     def insert_phone_data(self, user: str, company: str) -> str:
         """
         Insert phone interview data into the Google SpreadSheet (Phone column).
         """
-        response = self.insert_data(user, company, 4, "E")
+        response: str = self.insert_data(user, company, 4, "E")
         return response
 
     def insert_interview_data(self, user: str, company: str) -> str:
         """
         Insert interview data into the Google SpreadSheet (Interview column).
         """
-        response = self.insert_data(user, company, 5, "F")
+        response: str = self.insert_data(user, company, 5, "F")
         return response
 
     def insert_finalround_data(self, user: str, company: str) -> str:
         """
         Insert final round Interview data into the Google SpreadSheet (Final Round column).
         """
-        response = self.insert_data(user, company, 6, "G")
+        response: str = self.insert_data(user, company, 6, "G")
         return response
 
     def insert_offer_data(self, user: str, company: str) -> str:
         """
         Insert offer data into the Google SpreadSheet (Offer column).
         """
-        response = self.insert_data(user, company, 7, "H")
+        response: str = self.insert_data(user, company, 7, "H")
         return response
 
     def insert_rejection_data(self, user: str, company: str) -> str:
         """
         Insert rejection data into the Google SpreadSheet (Rejection column).
         """
-        response = self.insert_data(user, company, 8, "I")
+        response: str = self.insert_data(user, company, 8, "I")
         return response
