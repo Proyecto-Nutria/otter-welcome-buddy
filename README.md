@@ -79,6 +79,10 @@ You need the following environmental variables either in a `.env` file under the
 
 * `DISCORD_TOKEN`: the Discord Bot Token retrieved from the [developer page](https://discord.com/developers/applications).
 * `MONGO_URI`: address of the [MongoDB](https://docs.mongodb.com/manual/reference/connection-string/) instance to be used, could be local or [Cluster from Atlas](https://www.mongodb.com/cloud/atlas).
+* `SUDO_CHANNEL_ID`: the sudo-general channel ID.
+* `TRACKER_CHANNEL_ID`: the tracker channel ID.
+* `ADMIN_ROLE_ID`: ROOT role ID.
+* `COLLABORATOR_ROLE_ID`: Collaborator role ID.
 
 
 <!-- DOCKER INSTRUCTIONS -->
