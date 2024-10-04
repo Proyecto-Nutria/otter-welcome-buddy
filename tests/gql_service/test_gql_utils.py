@@ -6,8 +6,8 @@ from gql.transport.aiohttp import AIOHTTPTransport
 from graphql import GraphQLError
 from graphql import GraphQLSchema
 
-from otter_welcome_buddy.graphql.gql_utils import get_schema
-from otter_welcome_buddy.graphql.gql_utils import get_transport
+from otter_welcome_buddy.gql_service.gql_utils import get_schema
+from otter_welcome_buddy.gql_service.gql_utils import get_transport
 
 
 def test_get_transport() -> None:
