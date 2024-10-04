@@ -10,6 +10,7 @@ from discord import PartialEmoji
 from discord import RawReactionActionEvent
 from discord import Role
 from discord.ext.commands import Bot
+from discord.types.emoji import PartialEmoji as PartialEmojiType
 from pytest_mock import MockFixture
 
 from otter_welcome_buddy.cogs import events
@@ -21,15 +22,15 @@ if TYPE_CHECKING:
 
 
 @pytest.mark.asyncio
-async def test_cogSetup_registerCommand(mock_bot: Bot) -> None:
+async def test_cogSetup_registerCommand(mocker: MockFixture, mock_bot: Bot) -> None:
     # Arrange
-    mock_bot.add_cog = AsyncMock()
+    mock_add_cog = mocker.patch.object(mock_bot, "add_cog", new_callable=AsyncMock)
 
     # Act
     await events.setup(mock_bot)
 
     # Assert
-    assert mock_bot.add_cog.called
+    mock_add_cog.assert_called_once()
 
 
 @pytest.mark.asyncio
@@ -62,13 +63,16 @@ async def test_onRawReactionAdd_addRole(
 ) -> None:
     # Arrange
     mock_guild.id = 111
-    mock_bot.guilds = [mock_guild]
+    mock_bot.guilds = [mock_guild]  # type: ignore
     cog = events.BotEvents(mock_bot, mock_debug_fmt)
     data: MessageReactionAddEvent = {
         "user_id": 111,
         "channel_id": 111,
         "message_id": 111,
         "guild_id": 111,
+        "emoji": mocker.Mock(spec=PartialEmojiType),
+        "type": 0,
+        "burst": False,
     }
     payload = RawReactionActionEvent(
         data=data,
@@ -100,7 +104,7 @@ async def test_onGuildJoin_insertDb(
 ) -> None:
     # Arrange
     mock_guild.id = 111
-    mock_bot.guilds = [mock_guild]
+    mock_bot.guilds = [mock_guild]  # type: ignore
     cog = events.BotEvents(mock_bot, mock_debug_fmt)
 
     mock_get_guild = mocker.patch.object(
@@ -131,7 +135,7 @@ async def test_onGuildRemove_deleteDb(
 ) -> None:
     # Arrange
     mock_guild.id = mock_guild_model.id
-    mock_bot.guilds = [mock_guild]
+    mock_bot.guilds = [mock_guild]  # type: ignore
     cog = events.BotEvents(mock_bot, mock_debug_fmt)
 
     mock_delete_guild = mocker.patch.object(DbGuildHandler, "delete_guild")
