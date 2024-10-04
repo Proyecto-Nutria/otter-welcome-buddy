@@ -1,9 +1,15 @@
 import os
+from typing import Any
+from typing import TypeVar
 
 from gql.transport.aiohttp import AIOHTTPTransport
 from graphql import build_ast_schema
 from graphql import GraphQLSchema
 from graphql import parse
+
+from otter_welcome_buddy.gql_service.models.common import BaseGqlModel
+
+T = TypeVar("T")
 
 _SCHEMA_FOLDER_PATH: str = "schema"
 
@@ -44,3 +50,22 @@ def get_schema(schema_filename: str) -> GraphQLSchema:
     with open(schema_path, encoding="utf-8") as source:
         document = parse(source.read())
         return build_ast_schema(document)
+
+
+def get_deserialized_data(model: type[T], data: dict[str, Any]) -> T:
+    """
+    Deserialize the given data into an instance of the specified model type.
+
+    Args:
+        model (type[T]): The model class to deserialize the data into.
+        data (dict[str, Any]): The data to be deserialized.
+
+    Returns:
+        T: An instance of the specified model type with the deserialized data.
+
+    Raises:
+        TypeError: If the deserialized data is not an instance of the specified model type.
+    """
+    if not issubclass(model, BaseGqlModel):
+        raise TypeError("Model is not inheriting from BaseGqlModel")
+    return model(**data)
