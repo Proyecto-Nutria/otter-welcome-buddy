@@ -8,8 +8,8 @@ from gql import gql
 from gql.client import AsyncClientSession
 from graphql import GraphQLError
 
-from otter_welcome_buddy.graphql.gql_utils import get_schema
-from otter_welcome_buddy.graphql.gql_utils import get_transport
+from otter_welcome_buddy.gql_service.gql_utils import get_schema
+from otter_welcome_buddy.gql_service.gql_utils import get_transport
 
 
 logger = logging.getLogger(__name__)

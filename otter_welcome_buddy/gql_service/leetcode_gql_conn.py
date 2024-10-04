@@ -1,4 +1,4 @@
-from otter_welcome_buddy.graphql.services.base_gql import BaseGqlConn
+from otter_welcome_buddy.gql_service.base_gql_conn import BaseGqlConn
 
 
 class LeetcodeGqlConn(BaseGqlConn):

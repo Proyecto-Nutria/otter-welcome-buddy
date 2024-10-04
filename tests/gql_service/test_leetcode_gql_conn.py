@@ -1,4 +1,4 @@
-from otter_welcome_buddy.graphql.services.leetcode_gql import LeetcodeGqlConn
+from otter_welcome_buddy.gql_service.leetcode_gql_conn import LeetcodeGqlConn
 
 
 def test_graphql_url() -> None:

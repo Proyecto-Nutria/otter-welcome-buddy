@@ -1,8 +1,8 @@
 from typing import Any
 
-from otter_welcome_buddy.graphql.query.leetcode_queries import ACTIVE_DAILY_CHALLENGE_QUERY
-from otter_welcome_buddy.graphql.query.leetcode_queries import USER_PROFILE_QUERY
-from otter_welcome_buddy.graphql.services.leetcode_gql import LeetcodeGqlConn
+from otter_welcome_buddy.gql_service.leetcode_gql_conn import LeetcodeGqlConn
+from otter_welcome_buddy.gql_service.query.leetcode_queries import ACTIVE_DAILY_CHALLENGE_QUERY
+from otter_welcome_buddy.gql_service.query.leetcode_queries import USER_PROFILE_QUERY
 
 
 class GqlLeetcodeHandler:
