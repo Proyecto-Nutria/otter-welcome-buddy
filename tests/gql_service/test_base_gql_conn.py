@@ -9,8 +9,8 @@ from graphql import GraphQLError
 from graphql import GraphQLSchema
 from pytest_mock import MockFixture
 
-from otter_welcome_buddy.graphql.services import base_gql
-from otter_welcome_buddy.graphql.services.base_gql import BaseGqlConn
+from otter_welcome_buddy.gql_service import base_gql_conn
+from otter_welcome_buddy.gql_service.base_gql_conn import BaseGqlConn
 
 
 class TestBaseGqlConn(BaseGqlConn):
@@ -22,7 +22,7 @@ class TestBaseGqlConn(BaseGqlConn):
 def mock_transport(mocker: MockFixture) -> mock.Mock:
     transport = mock.Mock(spec=AIOHTTPTransport)
     return mocker.patch.object(
-        base_gql,
+        base_gql_conn,
         "get_transport",
         return_value=transport,
     )
@@ -32,7 +32,7 @@ def mock_transport(mocker: MockFixture) -> mock.Mock:
 def mock_schema(mocker: MockFixture) -> mock.Mock:
     schema = mock.Mock(spec=GraphQLSchema)
     return mocker.patch.object(
-        base_gql,
+        base_gql_conn,
         "get_schema",
         return_value=schema,
     )

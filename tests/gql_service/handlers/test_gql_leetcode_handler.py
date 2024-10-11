@@ -3,10 +3,10 @@ from unittest.mock import patch
 
 import pytest
 
-from otter_welcome_buddy.graphql.handlers.gql_leetcode_handler import GqlLeetcodeHandler
-from otter_welcome_buddy.graphql.query.leetcode_queries import ACTIVE_DAILY_CHALLENGE_QUERY
-from otter_welcome_buddy.graphql.query.leetcode_queries import USER_PROFILE_QUERY
-from otter_welcome_buddy.graphql.services.leetcode_gql import LeetcodeGqlConn
+from otter_welcome_buddy.gql_service.handlers.gql_leetcode_handler import GqlLeetcodeHandler
+from otter_welcome_buddy.gql_service.leetcode_gql_conn import LeetcodeGqlConn
+from otter_welcome_buddy.gql_service.query.leetcode_queries import ACTIVE_DAILY_CHALLENGE_QUERY
+from otter_welcome_buddy.gql_service.query.leetcode_queries import USER_PROFILE_QUERY
 
 _USERNAME = "test_user"
 
