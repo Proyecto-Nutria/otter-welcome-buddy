@@ -1,4 +1,5 @@
 import os
+from typing import Any
 from unittest import mock
 
 import pytest
@@ -6,8 +7,10 @@ from gql.transport.aiohttp import AIOHTTPTransport
 from graphql import GraphQLError
 from graphql import GraphQLSchema
 
+from otter_welcome_buddy.gql_service.gql_utils import get_deserialized_data
 from otter_welcome_buddy.gql_service.gql_utils import get_schema
 from otter_welcome_buddy.gql_service.gql_utils import get_transport
+from otter_welcome_buddy.gql_service.models.common import BaseGqlModel
 
 
 def test_get_transport() -> None:
@@ -67,3 +70,24 @@ def test_get_schema_graphql_error() -> None:
         with mock.patch("os.path.join", return_value=schema_path):
             with pytest.raises(GraphQLError):
                 get_schema(schema_filename)
+
+
+def test_get_deserialized_data_success() -> None:
+    class MockModel(BaseGqlModel):
+        field_one: str | None = None
+
+    data: dict[str, Any] = {"fieldOne": "value"}
+
+    result = get_deserialized_data(MockModel, data)
+    assert isinstance(result, MockModel)
+    assert result.field_one == "value"
+
+
+def test_get_deserialized_data_type_error() -> None:
+    class MockModel:
+        field_one: str | None = None
+
+    data: dict[str, Any] = {"fieldOne": "value"}
+
+    with pytest.raises(TypeError, match="Model is not inheriting from BaseGqlModel"):
+        get_deserialized_data(MockModel, data)
