@@ -1,6 +1,7 @@
 from mongoengine import CASCADE
 from mongoengine import Document
 from mongoengine import IntField
+from mongoengine import ListField
 from mongoengine import ReferenceField
 from mongoengine import StringField
 
@@ -18,6 +19,7 @@ class InterviewMatchModel(Document):
         day_of_the_week (int):  Number identifying where the activity is run where 0 is Sunday
         emoji (str):            Emoji that should be used to react to take part of the activity
         message_id (int):       Identifier of the message that will be processed for the activity
+        default_users (list):   List of user IDs that are always included in the pool
     """
 
     guild = ReferenceField(GuildModel, reverse_delete_rule=CASCADE, primary_key=True)
@@ -26,5 +28,6 @@ class InterviewMatchModel(Document):
     day_of_the_week = IntField(required=True)
     emoji = StringField()
     message_id = IntField()
+    default_users = ListField(IntField())
 
     meta = {"indexes": [{"fields": ["day_of_the_week"]}]}
