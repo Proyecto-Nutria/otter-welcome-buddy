@@ -198,9 +198,17 @@ class InterviewMatch(commands.Cog):
                 placeholder: discord.Member
                 channel, cache_message, placeholder = fetched_values
 
+                # Process default users
+                default_members: list[discord.Member] = []
+                for user_id in entry.default_users or []:
+                    member = channel.guild.get_member(user_id)
+                    if member is not None and not member.bot:
+                        default_members.append(member)
+
                 week_otter_pool: list[discord.Member] = await self._get_weekly_pool(
                     message=cache_message,
                     emoji=entry.emoji,
+                    default_members=default_members,
                 )
                 if not week_otter_pool:
                     await channel.send("No one wanted to practice 😟")
@@ -253,6 +261,7 @@ class InterviewMatch(commands.Cog):
         self,
         message: discord.Message,
         emoji: str,
+        default_members: list[discord.Member],
     ) -> list[discord.Member]:
         week_otter_pool_unique: set[discord.Member] = set()
         for reaction in message.reactions:
@@ -263,6 +272,10 @@ class InterviewMatch(commands.Cog):
                 # no longer belongs to the guild so we don't want to include it
                 if isinstance(user, discord.Member) and not user.bot:
                     week_otter_pool_unique.add(user)
+
+        # Add default users
+        for member in default_members:
+            week_otter_pool_unique.add(member)
 
         week_otter_pool: list[discord.Member] = list(
             week_otter_pool_unique,
@@ -343,14 +356,15 @@ class InterviewMatch(commands.Cog):
 
     @interview_match.command(  # type: ignore
         brief="Start interview match activity",
-        usage="<text_channel> [day_of_week]",
+        usage="<text_channel> [day_of_week] [default_users...]",
     )
     @commands.has_any_role(OTTER_ADMIN, OTTER_MODERATOR)
-    async def start(
+    async def start(  # pylint: disable=keyword-arg-before-vararg
         self,
         ctx: Context,
         channel: discord.TextChannel,
         day_of_week: int = _DEFAULT_DAY_OF_THE_WEEK,
+        *default_users: discord.Member,
     ) -> None:
         """
         Start Interview Match setting up options
@@ -392,6 +406,7 @@ class InterviewMatch(commands.Cog):
             day_of_the_week=day_of_week % 7,
             emoji=emoji_selected,
             message_id=None,
+            default_users=[user.id for user in default_users],
         )
 
         try:
