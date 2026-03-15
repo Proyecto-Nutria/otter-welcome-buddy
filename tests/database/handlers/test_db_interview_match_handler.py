@@ -19,6 +19,7 @@ def test_get_interview_match_succeed(
         author_id=123,
         channel_id=123,
         day_of_the_week=0,
+        default_users=[456, 789],
     )
     mocked_interview_match_model.save()
 
@@ -28,6 +29,7 @@ def test_get_interview_match_succeed(
     # Assert
     assert result is not None
     assert result.guild.id == mocked_guild_id
+    assert result.default_users == [456, 789]
 
 
 def test_get_interview_match_not_found(temporary_mongo_connection: MongoClient) -> None:
@@ -49,6 +51,7 @@ def test_insert_interview_match_succeed(
         author_id=123,
         channel_id=123,
         day_of_the_week=0,
+        default_users=[456, 789],
     )
 
     # Act
@@ -59,6 +62,7 @@ def test_insert_interview_match_succeed(
     # Assert
     assert result is not None
     assert result.guild.guild_id == mocked_guild_id
+    assert result.default_users == [456, 789]
 
 
 def test_insert_interview_match_failed(temporary_mongo_connection: MongoClient) -> None:
@@ -83,6 +87,7 @@ def test_delete_interview_match_valid_id(
         author_id=123,
         channel_id=123,
         day_of_the_week=0,
+        default_users=[456, 789],
     )
     mocked_interview_match_model.save()
 
